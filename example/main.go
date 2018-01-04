@@ -7,9 +7,20 @@ import (
 )
 
 func main() {
-	cmd, err := pego.New()
+	peg, err := pego.New()
 	if err != nil {
 		log.Fatal(err)
 	}
-	_ = cmd
+
+	files := []string{
+		"a1.mp3",
+		"a2.mp3",
+	}
+
+	peg.Concat(files)
+	peg.Dir("YOUR_DIR")
+	peg.ArgsSet("-c", "copy")
+
+	filename := "sample.aac"
+	peg.Run(filename)
 }
