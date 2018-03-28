@@ -11,16 +11,3 @@ func (f *ffmpeg) Concat(str []string) {
 	f.Args = append(f.Args, "-i")
 	f.Args = append(f.Args, files)
 }
-
-func (f *ffmpeg) Dir(dir string) {
-	f.Dir = dir
-}
-
-func (f *ffmeg) ArgsSet(args ...string) {
-	f.Args = append(f.Args, args...)
-}
-
-func (f *ffmpeg) Run(out string) {
-	f.Args = append(f.Args, out)
-	return f.Run()
-}
