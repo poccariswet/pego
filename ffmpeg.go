@@ -2,8 +2,6 @@ package pego
 
 import (
 	"os/exec"
-
-	"github.com/pkg/errors"
 )
 
 type ffmpeg struct {
@@ -13,23 +11,23 @@ type ffmpeg struct {
 func New() (*ffmpeg, error) {
 	cmd, err := exec.LookPath("ffmpeg")
 	if err != nil {
-		return nil, errors.New("cannot find ffmpeg")
+		return nil, err
 	}
 
-	return &ffmpeg{exec.Command(
-		cmd,
-	)}, nil
+	return &ffmpeg{
+		exec.Command(cmd),
+	}, nil
 }
 
 func (f *ffmpeg) Dir(dir string) {
 	f.Dir = dir
 }
 
-func (f *ffmeg) ArgsSet(args ...string) {
+func (f *ffmpeg) ArgsSet(args ...string) {
 	f.Args = append(f.Args, args...)
 }
 
-func (f *ffmpeg) Run(out string) {
+func (f *ffmpeg) run(out string) {
 	f.Args = append(f.Args, out)
 	return f.Run()
 }

@@ -2,8 +2,13 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/soeyusuke/pego"
+)
+
+var (
+	home_path = os.Getenv("HOME")
 )
 
 func main() {
@@ -18,9 +23,9 @@ func main() {
 	}
 
 	peg.Concat(files)
-	peg.Dir("YOUR_DIR")
+	peg.Dir(home_path)
 	peg.ArgsSet("-c", "copy")
 
 	filename := "sample.aac"
-	peg.Run(filename)
+	peg.run(filename)
 }
